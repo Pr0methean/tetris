@@ -36,22 +36,22 @@ class Game extends Frame implements KeyListener, ActionListener {
   private static final Duration NEW_GAME_COOLDOWN = Duration.ofSeconds(3);
   private Instant noNewGameBefore = Instant.MIN;
   private static final double SPEED_DOUBLES_EVERY_N_POINTS = 30.0;
-  static int WIDTH = 10;
+  static final int WIDTH = 10;
   private static final int[] EMPTY_ROW = new int[WIDTH];
-  static int HEIGHT = 10;
-  static int WINDOW_WIDTH = 200;
-  static int WINDOW_HEIGHT = 600;
-  static int TOP_BORDER = 30;
-  static int BORDER = 10;
-  String textBelow = "";
-  TextArea area = null;
-  int score = 0;
-  int topScore = 0;
+  static final int HEIGHT = 10;
+  private static final int WINDOW_WIDTH = 200;
+  private static final int WINDOW_HEIGHT = 600;
+  private static final int TOP_BORDER = 30;
+  private static final int BORDER = 10;
+  private String textBelow = "";
+  private TextArea area = null;
+  private int score = 0;
+  private int topScore = 0;
   // The board is represented as an array of arrays, with 10 rows and 10 columns.
-  int[][] board = new int[HEIGHT][WIDTH];
-  Timer timer = new Timer(INITIAL_DELAY_MS, this);
-  Piece piece;
-  Piece nextPiece;
+  final int[][] board = new int[HEIGHT][WIDTH];
+  private final Timer timer = new Timer(INITIAL_DELAY_MS, this);
+  private Piece piece;
+  private Piece nextPiece;
   private boolean gameOver;
 
   Game() {
@@ -86,7 +86,7 @@ class Game extends Frame implements KeyListener, ActionListener {
   /*
    * Append text to the demo text area.
    */
-  public void setText(String text) {
+  private void setText(String text) {
     textBelow = text;
   }
 
@@ -116,7 +116,7 @@ class Game extends Frame implements KeyListener, ActionListener {
   /*
    * Updates the demo text area with the contents of the
    */
-  public void refresh(Piece piece, Piece nextPiece) {
+  private void refresh(Piece piece, Piece nextPiece) {
     StringBuilder sb = new StringBuilder();
     for (int col = 0; col < WIDTH + 2; col++) {
       sb.append("*");
@@ -148,14 +148,14 @@ class Game extends Frame implements KeyListener, ActionListener {
   }
 
   /** Reset board and score to start a new game. */
-  public void clear() {
+  private void clear() {
     for (int row = 0; row < HEIGHT; row++) {
       System.arraycopy(EMPTY_ROW, 0, board[row], 0, WIDTH);
     }
     score = 0;
   }
 
-  public void displayGameOver() {
+  private void displayGameOver() {
     if (score > topScore) {
       topScore = score;
       setText("HIGH SCORE!");
@@ -221,8 +221,6 @@ class Game extends Frame implements KeyListener, ActionListener {
           } while (piece == currentPiece);
           timer.restart();
           break;
-        default:
-          setText(KeyEvent.getKeyText(keyCode));
       }
     }
     refresh(piece, nextPiece);

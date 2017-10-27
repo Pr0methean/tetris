@@ -3,7 +3,7 @@ import java.util.Random;
 public class Piece {
 
   private int x, y;
-  private int[][] shape;
+  private final int[][] shape;
   private static final int INIT_X = (Game.WIDTH - 2) / 2;
   private static final Random RNG = new Random();
   private static final int[] EMPTY_ROW = {0, 0, 0, 0};
@@ -35,7 +35,7 @@ public class Piece {
    * @param dy y offset to move in.
    * @return true if this piece can fall down one step without colliding; false otherwise.
    */
-  public boolean canMove(Game board, int dx, int dy) {
+  private boolean canMove(Game board, int dx, int dy) {
     for (int ix = 0; ix < 4; ix++) {
       for (int iy = 0; iy < 4; iy++) {
         if (shape[iy][ix] != 0 && (!isOnBoard(x + ix + dx, y + iy + dy)
@@ -54,13 +54,11 @@ public class Piece {
    * @param dy y offset to move in.
    * @return true if moved; false otherwise.
    */
-  public boolean tryMove(Game board, int dx, int dy) {
+  public void tryMove(Game board, int dx, int dy) {
     if (canMove(board, dx, dy)) {
       x += dx;
       y += dy;
-      return true;
     }
-    return false;
   }
 
   public Piece tryRotate(boolean counterClockwise, Game board) {
@@ -94,8 +92,7 @@ public class Piece {
     return shape[y - this.y][x - this.x];
   }
 
-  @Override
-  public String toString() {
+  @Override public String toString() {
     StringBuilder stringBuilder = new StringBuilder();
     for (int y = 0; y < 4; y++) {
       for (int x = 0; x < 4; x++) {
