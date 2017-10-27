@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="306f08e0-5726-438a-9ba7-134f4731f191" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Board.java" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Tetris/Board.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Tetris/Game$1.class" afterPath="$PROJECT_DIR$/out/production/Tetris/Game$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Tetris/Game.class" afterPath="$PROJECT_DIR$/out/production/Tetris/Game.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Tetris/Piece.class" afterPath="$PROJECT_DIR$/out/production/Tetris/Piece.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Tetris/Tetris.class" afterPath="$PROJECT_DIR$/out/production/Tetris/Tetris.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Piece.java" afterPath="$PROJECT_DIR$/Piece.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tetris.java" afterPath="$PROJECT_DIR$/Tetris.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Tetris/.gitignore" afterPath="$PROJECT_DIR$/out/production/Tetris/.gitignore" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,13 +24,26 @@
       <file leaf-file-name="Tetris.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Tetris.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="31" column="61" lean-forward="true" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
+            <state relative-caret-position="198">
+              <caret line="37" column="63" lean-forward="false" selection-start-line="37" selection-start-column="63" selection-end-line="37" selection-end-column="63" />
               <folding>
-                <element signature="e#2320#2321#0" expanded="true" />
-                <element signature="e#2349#2350#0" expanded="true" />
-                <element signature="e#4467#4576#0" expanded="true" />
-                <element signature="e#4575#4576#0" expanded="true" />
+                <element signature="e#2638#2639#0" expanded="true" />
+                <element signature="e#2667#2668#0" expanded="true" />
+                <element signature="e#4792#4901#0" expanded="true" />
+                <element signature="e#4900#4901#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Timer.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-9/src.zip!/java.desktop/javax/swing/Timer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="596" column="16" lean-forward="false" selection-start-line="596" selection-start-column="16" selection-end-line="596" selection-end-column="16" />
+              <folding>
+                <element signature="e#17753#17754#0" expanded="true" />
+                <element signature="e#17815#17816#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,11 +67,14 @@
       <find>Board</find>
       <find>isOnGame</find>
       <find>board</find>
+      <find>setinitial</find>
+      <find>restart</find>
     </findStrings>
     <replaceStrings>
       <replace>EMPTY_ROW</replace>
       <replace>Game</replace>
       <replace>isOnBoard</replace>
+      <replace>setInitialDelay</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -270,9 +284,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18501529" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18501529" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -297,10 +311,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2320#2321#0" expanded="true" />
-            <element signature="e#2349#2350#0" expanded="true" />
-            <element signature="e#4467#4576#0" expanded="true" />
-            <element signature="e#4575#4576#0" expanded="true" />
+            <element signature="e#2638#2639#0" expanded="true" />
+            <element signature="e#2667#2668#0" expanded="true" />
+            <element signature="e#4792#4901#0" expanded="true" />
+            <element signature="e#4900#4901#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -326,10 +340,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2320#2321#0" expanded="true" />
-            <element signature="e#2349#2350#0" expanded="true" />
-            <element signature="e#4467#4576#0" expanded="true" />
-            <element signature="e#4575#4576#0" expanded="true" />
+            <element signature="e#2638#2639#0" expanded="true" />
+            <element signature="e#2667#2668#0" expanded="true" />
+            <element signature="e#4792#4901#0" expanded="true" />
+            <element signature="e#4900#4901#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -374,15 +388,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9/src.zip!/java.desktop/javax/swing/Timer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="596" column="16" lean-forward="false" selection-start-line="596" selection-start-column="16" selection-end-line="596" selection-end-column="16" />
+          <folding>
+            <element signature="e#17753#17754#0" expanded="true" />
+            <element signature="e#17815#17816#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Tetris.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="31" column="61" lean-forward="true" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
+        <state relative-caret-position="198">
+          <caret line="37" column="63" lean-forward="false" selection-start-line="37" selection-start-column="63" selection-end-line="37" selection-end-column="63" />
           <folding>
-            <element signature="e#2320#2321#0" expanded="true" />
-            <element signature="e#2349#2350#0" expanded="true" />
-            <element signature="e#4467#4576#0" expanded="true" />
-            <element signature="e#4575#4576#0" expanded="true" />
+            <element signature="e#2638#2639#0" expanded="true" />
+            <element signature="e#2667#2668#0" expanded="true" />
+            <element signature="e#4792#4901#0" expanded="true" />
+            <element signature="e#4900#4901#0" expanded="true" />
           </folding>
         </state>
       </provider>

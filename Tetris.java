@@ -14,6 +14,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.Clock;
+import java.time.Duration;
+import java.time.Instant;
 import javax.swing.Timer;
 
 class Tetris {
@@ -25,11 +28,14 @@ class Tetris {
 }
 
 class Game extends Frame implements KeyListener, ActionListener {
-
+  private static final Clock CLOCK = Clock.systemUTC();
   static final char[] PATTERNS = {' ', '#', '%', '&', '@', '$', '8', 'X'};
   /** Initially drop blocks 1 row per second. */
   private static final int INITIAL_DELAY_MS = 1000;
-  public static final double SPEED_DOUBLES_EVERY_N_POINTS = 10.0;
+  /** Used to ensure the player sees that the game ended. */
+  private static final Duration NEW_GAME_COOLDOWN = Duration.ofSeconds(3);
+  private Instant noNewGameBefore = Instant.MIN;
+  private static final double SPEED_DOUBLES_EVERY_N_POINTS = 30.0;
   static int WIDTH = 10;
   private static final int[] EMPTY_ROW = new int[WIDTH];
   static int HEIGHT = 10;
@@ -104,7 +110,7 @@ class Game extends Frame implements KeyListener, ActionListener {
       System.arraycopy(EMPTY_ROW, 0, board[0], 0, WIDTH);
     }
     score += rowsCleared * rowsCleared;
-    timer.setDelay(getTimeDelayMs());
+    timer.setInitialDelay(getTimeDelayMs());
   }
 
   /*
@@ -171,10 +177,11 @@ class Game extends Frame implements KeyListener, ActionListener {
 
   private void newGame() {
     clear();
+    gameOver = false;
     piece = new Piece();
     nextPiece = new Piece();
     gameOver = false;
-    timer.setDelay(INITIAL_DELAY_MS);
+    timer.setInitialDelay(INITIAL_DELAY_MS);
     timer.start();
     refresh(piece, nextPiece);
   }
@@ -183,7 +190,9 @@ class Game extends Frame implements KeyListener, ActionListener {
     if (e.getKeyCode() == VK_C && e.isControlDown()) {
       System.exit(0);
     } else if (gameOver) {
-      newGame();
+      if (CLOCK.instant().isAfter(noNewGameBefore)) {
+        newGame();
+      }
     } else {
       setText("");
       int keyCode = e.getKeyCode();
@@ -225,15 +234,7 @@ class Game extends Frame implements KeyListener, ActionListener {
       nextPiece = null;
       gameOver = true;
       displayGameOver();
-      // Wait 3 seconds so player can see that game is over
-      // FIXME: This also disables ^C
-      removeKeyListener(this);
-      try {
-        Thread.sleep(3000);
-      } catch (InterruptedException e) {
-        System.exit(1);
-      }
-      addKeyListener(this);
+      noNewGameBefore = CLOCK.instant().plus(NEW_GAME_COOLDOWN);
     } else if (piece == nextPiece) {
       nextPiece = new Piece();
     }
