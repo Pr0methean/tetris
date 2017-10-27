@@ -94,6 +94,18 @@ public class Piece {
     return shape[y - this.y][x - this.x];
   }
 
+  @Override
+  public String toString() {
+    StringBuilder stringBuilder = new StringBuilder();
+    for (int y = 0; y < 4; y++) {
+      for (int x = 0; x < 4; x++) {
+        stringBuilder.append(Board.PATTERNS[shape[y][x]]);
+      }
+      stringBuilder.append('\n');
+    }
+    return stringBuilder.toString();
+  }
+
   /**
    * Drops this piece by one step if possible; if not, lands it.
    * @param board the board we're playing on.
@@ -107,20 +119,25 @@ public class Piece {
       return this;
     }
     // Anchor this piece
-    for (int ix = 0; ix < 4; ix++) {
-      for (int iy = 0; iy < 4; iy++) {
-        if (isOnBoard(x + ix, y + iy) && board.board[y + iy][x + ix] == 0) {
-          board.board[y + iy][x + ix] = shape[iy][ix];
-        }
-      }
-    }
+    anchor(board);
     board.clearFullRows();
     if (!nextPiece.canMove(board, 0, 1)) {
-      // Game over!
+      // Game over! Display the collision
+      nextPiece.anchor(board);
       return null;
     } else {
       nextPiece.y = 0;
       return nextPiece;
+    }
+  }
+
+  private void anchor(Board board) {
+    for (int ix = 0; ix < 4; ix++) {
+      for (int iy = 0; iy < 4; iy++) {
+        if (isOnBoard(x + ix, y + iy) && board.board[y + iy][x + ix] == 0) {
+          board.set(x + ix, y + iy, shape[iy][ix]);
+        }
+      }
     }
   }
 }
