@@ -5,6 +5,9 @@ import static java.awt.event.KeyEvent.VK_RIGHT;
 import static java.awt.event.KeyEvent.VK_SPACE;
 import static java.awt.event.KeyEvent.VK_UP;
 
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -21,30 +24,159 @@ class Tetris {
   }
 }
 
-class Game implements KeyListener, ActionListener {
-  Timer timer = new Timer(1000, this);
-  Board board = new Board();
+class Game extends Frame implements KeyListener, ActionListener {
+
+  static final char[] PATTERNS = {' ', '#', '%', '&', '@', '$', '8', 'X'};
+  /** Initially drop blocks 1 row per second. */
+  private static final int INITIAL_DELAY_MS = 1000;
+  public static final double SPEED_DOUBLES_EVERY_N_POINTS = 10.0;
+  static int WIDTH = 10;
+  private static final int[] EMPTY_ROW = new int[WIDTH];
+  static int HEIGHT = 10;
+  static int WINDOW_WIDTH = 200;
+  static int WINDOW_HEIGHT = 600;
+  static int TOP_BORDER = 30;
+  static int BORDER = 10;
+  String textBelow = "";
+  TextArea area = null;
+  int score = 0;
+  int topScore = 0;
+  // The board is represented as an array of arrays, with 10 rows and 10 columns.
+  int[][] board = new int[HEIGHT][WIDTH];
+  Timer timer = new Timer(INITIAL_DELAY_MS, this);
   Piece piece;
   Piece nextPiece;
   private boolean gameOver;
 
+  Game() {
+    super("Demo");
+    setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+    setLayout(null);
+    setVisible(true);
+    requestFocus();
+
+    area = new TextArea("", WIDTH, HEIGHT, TextArea.SCROLLBARS_NONE);
+    area.setBounds(BORDER, TOP_BORDER, WINDOW_WIDTH - 2 * BORDER,
+        WINDOW_HEIGHT - BORDER - TOP_BORDER);
+    area.setFont(new Font("Monospaced", Font.PLAIN, 24));
+    area.setEditable(false);
+    area.setFocusable(false);
+
+    add(area);
+  }
+
+  /**
+   * Speed increases smoothly and exponentially with score.
+   * @return the current time delay between block drops
+   */
+  private int getTimeDelayMs() {
+    return (int) (INITIAL_DELAY_MS * Math.pow(0.5, score / SPEED_DOUBLES_EVERY_N_POINTS));
+  }
+
+  public void set(int x, int y, int value) {
+    board[y][x] = value;
+  }
+
+  /*
+   * Append text to the demo text area.
+   */
+  public void setText(String text) {
+    textBelow = text;
+  }
+
+  /**
+   * Clears all full rows and scores points for them.
+   */
+  public void clearFullRows() {
+    int rowsCleared = 0;
+    outer:
+    for (int row = 0; row < HEIGHT; row++) {
+      for (int col = 0; col < WIDTH; col++) {
+        if (board[row][col] == 0) {
+          continue outer;
+        }
+      }
+      // Row is cleared!
+      rowsCleared++;
+      for (int fallingRow = row - 1; fallingRow > 0; fallingRow--) {
+        System.arraycopy(board[fallingRow], 0, board[fallingRow + 1], 0, WIDTH);
+      }
+      System.arraycopy(EMPTY_ROW, 0, board[0], 0, WIDTH);
+    }
+    score += rowsCleared * rowsCleared;
+    timer.setDelay(getTimeDelayMs());
+  }
+
+  /*
+   * Updates the demo text area with the contents of the
+   */
+  public void refresh(Piece piece, Piece nextPiece) {
+    StringBuilder sb = new StringBuilder();
+    for (int col = 0; col < WIDTH + 2; col++) {
+      sb.append("*");
+    }
+    sb.append("\n");
+
+    for (int row = 0; row < HEIGHT; row++) {
+      sb.append("|");
+      for (int col = 0; col < WIDTH; col++) {
+        int value = board[row][col];
+        if (value == 0 && piece != null) {
+          value = piece.shapeAt(col, row);
+        }
+        sb.append(PATTERNS[value]);
+      }
+      sb.append("|\n");
+    }
+
+    for (int col = 0; col < WIDTH + 2; col++) {
+      sb.append("*");
+    }
+    sb.append("\n");
+    sb.append(textBelow);
+    sb.append(String.format("%nSCORE: %5d%nBEST:  %5d%n", score, topScore));
+    if (nextPiece != null) {
+      sb.append(nextPiece.toString());
+    }
+    area.setText(sb.toString());
+  }
+
+  /** Reset board and score to start a new game. */
+  public void clear() {
+    for (int row = 0; row < HEIGHT; row++) {
+      System.arraycopy(EMPTY_ROW, 0, board[row], 0, WIDTH);
+    }
+    score = 0;
+  }
+
+  public void displayGameOver() {
+    if (score > topScore) {
+      topScore = score;
+      setText("HIGH SCORE!");
+    } else {
+      setText("GAME OVER :(");
+    }
+    refresh(null, null);
+  }
+
   public void run() {
-    board.addWindowListener(new WindowAdapter() {
+    addWindowListener(new WindowAdapter() {
       public void windowClosing(WindowEvent we) {
         System.exit(0);
       }
     });
-    board.addKeyListener(this);
+    addKeyListener(this);
     newGame();
   }
 
   private void newGame() {
-    board.clear();
+    clear();
     piece = new Piece();
     nextPiece = new Piece();
     gameOver = false;
+    timer.setDelay(INITIAL_DELAY_MS);
     timer.start();
-    board.refresh(piece, nextPiece);
+    refresh(piece, nextPiece);
   }
 
   public void keyPressed(KeyEvent e) {
@@ -53,20 +185,20 @@ class Game implements KeyListener, ActionListener {
     } else if (gameOver) {
       newGame();
     } else {
-      board.setText("");
+      setText("");
       int keyCode = e.getKeyCode();
       switch (keyCode) {
         case VK_UP:
           // Rotate piece
-          piece = piece.tryRotate(false, board);
+          piece = piece.tryRotate(false, this);
           break;
         case VK_LEFT:
           // Move piece left
-          piece.tryMove(board, -1, 0);
+          piece.tryMove(this, -1, 0);
           break;
         case VK_RIGHT:
           // Move piece right
-          piece.tryMove(board, 1, 0);
+          piece.tryMove(this, 1, 0);
           break;
         case VK_DOWN:
           moveBlockDown();
@@ -81,27 +213,27 @@ class Game implements KeyListener, ActionListener {
           timer.restart();
           break;
         default:
-          board.setText(KeyEvent.getKeyText(keyCode));
+          setText(KeyEvent.getKeyText(keyCode));
       }
     }
-    board.refresh(piece, nextPiece);
+    refresh(piece, nextPiece);
   }
 
   private void moveBlockDown() {
-    piece = piece.dropOnto(board, nextPiece);
+    piece = piece.dropOnto(this, nextPiece);
     if (piece == null) {
       nextPiece = null;
       gameOver = true;
-      board.displayGameOver();
+      displayGameOver();
       // Wait 3 seconds so player can see that game is over
       // FIXME: This also disables ^C
-      board.removeKeyListener(this);
+      removeKeyListener(this);
       try {
         Thread.sleep(3000);
       } catch (InterruptedException e) {
         System.exit(1);
       }
-      board.addKeyListener(this);
+      addKeyListener(this);
     } else if (piece == nextPiece) {
       nextPiece = new Piece();
     }
@@ -117,7 +249,7 @@ class Game implements KeyListener, ActionListener {
     // Only called by the timer.
     moveBlockDown();
     timer.restart();
-    board.refresh(piece, nextPiece);
+    refresh(piece, nextPiece);
   }
 }
 

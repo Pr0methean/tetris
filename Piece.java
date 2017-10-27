@@ -4,7 +4,7 @@ public class Piece {
 
   private int x, y;
   private int[][] shape;
-  private static final int INIT_X = (Board.WIDTH - 2) / 2;
+  private static final int INIT_X = (Game.WIDTH - 2) / 2;
   private static final Random RNG = new Random();
   private static final int[] EMPTY_ROW = {0, 0, 0, 0};
   private static final int[][][] BLOCK_SHAPES =
@@ -35,7 +35,7 @@ public class Piece {
    * @param dy y offset to move in.
    * @return true if this piece can fall down one step without colliding; false otherwise.
    */
-  public boolean canMove(Board board, int dx, int dy) {
+  public boolean canMove(Game board, int dx, int dy) {
     for (int ix = 0; ix < 4; ix++) {
       for (int iy = 0; iy < 4; iy++) {
         if (shape[iy][ix] != 0 && (!isOnBoard(x + ix + dx, y + iy + dy)
@@ -54,7 +54,7 @@ public class Piece {
    * @param dy y offset to move in.
    * @return true if moved; false otherwise.
    */
-  public boolean tryMove(Board board, int dx, int dy) {
+  public boolean tryMove(Game board, int dx, int dy) {
     if (canMove(board, dx, dy)) {
       x += dx;
       y += dy;
@@ -63,7 +63,7 @@ public class Piece {
     return false;
   }
 
-  public Piece tryRotate(boolean counterClockwise, Board board) {
+  public Piece tryRotate(boolean counterClockwise, Game board) {
     int[][] rotatedShape = new int[4][4];
     for (int ix = 0; ix < 4; ix++) {
       for (int iy = 0; iy < 4; iy++) {
@@ -84,7 +84,7 @@ public class Piece {
   }
 
   private boolean isOnBoard(int x, int y) {
-    return x >= 0 && x < Board.WIDTH && y >= 0 && y < Board.HEIGHT;
+    return x >= 0 && x < Game.WIDTH && y >= 0 && y < Game.HEIGHT;
   }
 
   public int shapeAt(int x, int y) {
@@ -99,7 +99,7 @@ public class Piece {
     StringBuilder stringBuilder = new StringBuilder();
     for (int y = 0; y < 4; y++) {
       for (int x = 0; x < 4; x++) {
-        stringBuilder.append(Board.PATTERNS[shape[y][x]]);
+        stringBuilder.append(Game.PATTERNS[shape[y][x]]);
       }
       stringBuilder.append('\n');
     }
@@ -112,7 +112,7 @@ public class Piece {
    * @param nextPiece the next piece.
    * @return the currently-falling piece after dropping, or null if the game is over.
    */
-  public Piece dropOnto(Board board, Piece nextPiece) {
+  public Piece dropOnto(Game board, Piece nextPiece) {
     if (canMove(board, 0, 1)) {
       // Piece falls a step
       y++;
@@ -131,7 +131,7 @@ public class Piece {
     }
   }
 
-  private void anchor(Board board) {
+  private void anchor(Game board) {
     for (int ix = 0; ix < 4; ix++) {
       for (int iy = 0; iy < 4; iy++) {
         if (isOnBoard(x + ix, y + iy) && board.board[y + iy][x + ix] == 0) {
