@@ -7,7 +7,7 @@ public class Piece {
   private static final int INIT_X = (Game.WIDTH - 2) / 2;
   private static final Random RNG = new Random();
   private static final int[] EMPTY_ROW = {0, 0, 0, 0};
-  public static final int[][] SHAPE_I = {EMPTY_ROW, {1, 1, 1, 1}, EMPTY_ROW EMPTY_ROW};
+  public static final int[][] SHAPE_I = {EMPTY_ROW, {1, 1, 1, 1}, EMPTY_ROW, EMPTY_ROW};
   public static final int[][] SHAPE_O = {EMPTY_ROW, {0, 2, 2, 0}, {0, 2, 2, 0}, EMPTY_ROW};
   public static final int[][] SHAPE_J = {EMPTY_ROW, {0, 3, 3, 3}, {0, 0, 0, 3}, EMPTY_ROW};
   public static final int[][] SHAPE_L = {EMPTY_ROW, {4, 4, 4, 0}, {4, 0, 0, 0}, EMPTY_ROW};

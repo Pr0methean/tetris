@@ -8,6 +8,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Tetris/Piece.class" afterPath="$PROJECT_DIR$/out/production/Tetris/Piece.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Tetris/Tetris.class" afterPath="$PROJECT_DIR$/out/production/Tetris/Tetris.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Piece.java" afterPath="$PROJECT_DIR$/Piece.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tetris.java" afterPath="$PROJECT_DIR$/Tetris.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,16 +20,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Tetris.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Tetris.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Tetris.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3840">
-              <caret line="222" column="16" lean-forward="false" selection-start-line="222" selection-start-column="16" selection-end-line="222" selection-end-column="16" />
+            <state relative-caret-position="180">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding>
-                <element signature="e#2774#2775#0" expanded="true" />
-                <element signature="e#2803#2804#0" expanded="true" />
-                <element signature="e#4932#5041#0" expanded="true" />
-                <element signature="e#5040#5041#0" expanded="true" />
+                <element signature="e#2860#2861#0" expanded="true" />
+                <element signature="e#2889#2890#0" expanded="true" />
+                <element signature="e#5018#5127#0" expanded="true" />
+                <element signature="e#5126#5127#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -47,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Piece.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Piece.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Piece.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -103,8 +104,8 @@
         <option value="$PROJECT_DIR$/Block.java" />
         <option value="$PROJECT_DIR$/Board.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/Tetris.java" />
         <option value="$PROJECT_DIR$/Piece.java" />
+        <option value="$PROJECT_DIR$/Tetris.java" />
       </list>
     </option>
   </component>
@@ -385,10 +386,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2774#2775#0" expanded="true" />
-            <element signature="e#2803#2804#0" expanded="true" />
-            <element signature="e#4932#5041#0" expanded="true" />
-            <element signature="e#5040#5041#0" expanded="true" />
+            <element signature="e#2860#2861#0" expanded="true" />
+            <element signature="e#2889#2890#0" expanded="true" />
+            <element signature="e#5018#5127#0" expanded="true" />
+            <element signature="e#5126#5127#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -414,10 +415,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2774#2775#0" expanded="true" />
-            <element signature="e#2803#2804#0" expanded="true" />
-            <element signature="e#4932#5041#0" expanded="true" />
-            <element signature="e#5040#5041#0" expanded="true" />
+            <element signature="e#2860#2861#0" expanded="true" />
+            <element signature="e#2889#2890#0" expanded="true" />
+            <element signature="e#5018#5127#0" expanded="true" />
+            <element signature="e#5126#5127#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -465,24 +466,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tetris.java">
+    <entry file="file://$PROJECT_DIR$/Piece.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3840">
-          <caret line="222" column="16" lean-forward="false" selection-start-line="222" selection-start-column="16" selection-end-line="222" selection-end-column="16" />
-          <folding>
-            <element signature="e#2774#2775#0" expanded="true" />
-            <element signature="e#2803#2804#0" expanded="true" />
-            <element signature="e#4932#5041#0" expanded="true" />
-            <element signature="e#5040#5041#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Piece.java">
+    <entry file="file://$PROJECT_DIR$/Tetris.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="180">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="e#2860#2861#0" expanded="true" />
+            <element signature="e#2889#2890#0" expanded="true" />
+            <element signature="e#5018#5127#0" expanded="true" />
+            <element signature="e#5126#5127#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

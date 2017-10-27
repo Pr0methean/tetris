@@ -29,20 +29,24 @@ class Tetris {
 
 class Game extends Frame implements KeyListener, ActionListener {
   private static final Clock CLOCK = Clock.systemUTC();
-  static final char[] PATTERNS = {' ', '#', '%', '&', '@', '$', '8', 'X'};
   /** Initially drop blocks 1 row per second. */
   private static final int INITIAL_DELAY_MS = 1000;
-  /** Used to ensure the player sees that the game ended. */
+  /**
+   * Used to ensure the player can see that the game ended. For this duration afterwards, we don't
+   * handle any key except Ctrl-C.
+   */
   private static final Duration NEW_GAME_COOLDOWN = Duration.ofSeconds(3);
   private Instant noNewGameBefore = Instant.MIN;
   private static final double SPEED_DOUBLES_EVERY_N_POINTS = 30.0;
-  static final int WIDTH = 10;
-  private static final int[] EMPTY_ROW = new int[WIDTH];
-  static final int HEIGHT = 10;
   private static final int WINDOW_WIDTH = 200;
   private static final int WINDOW_HEIGHT = 600;
   private static final int TOP_BORDER = 30;
   private static final int BORDER = 10;
+  static final char[] PATTERNS = {' ', '#', '%', '&', '@', '$', '8', 'X'};
+  static final int WIDTH = 10;
+  static final int HEIGHT = 10;
+  private static final int[] EMPTY_ROW = new int[WIDTH];
+
   private String textBelow = "";
   private TextArea area = null;
   private int score = 0;
